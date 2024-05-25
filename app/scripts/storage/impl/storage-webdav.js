@@ -326,20 +326,6 @@ class StorageWebDav extends StorageBase {
                 }
                 return;
             }
-            const rev = xhr.getResponseHeader('Last-Modified');
-            if (!rev && !config.nostat) {
-                this.logger.debug(
-                    config.op + ' error',
-                    config.path,
-                    'no headers',
-                    this.logger.ts(ts)
-                );
-                if (callback) {
-                    callback(Locale.webdavNoLastModified, xhr);
-                    callback = null;
-                }
-                return;
-            }
             const completedOpName =
                 config.op + (config.op.charAt(config.op.length - 1) === 'e' ? 'd' : 'ed');
             this.logger.debug(completedOpName, config.path, rev, this.logger.ts(ts));
